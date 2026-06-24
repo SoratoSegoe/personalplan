@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Healthcare Program | 医師監修パーソナル処方</title>
+    <title>Medical Fitness Program | 医師監修パーソナル処方</title>
     <!-- Tailwind CSS (v4) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- Google Fonts -->
@@ -55,7 +55,7 @@
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-600"></span>
             </div>
-            <span class="font-bold tracking-widest text-xs md:text-sm uppercase text-slate-800 font-mono">Medical Healthcare Program</span>
+            <span class="font-bold tracking-widest text-xs md:text-sm uppercase text-slate-800 font-mono">Medical Fitness Program</span>
         </div>
         <div>
             <span class="text-[10px] uppercase tracking-wider bg-white px-3 py-1 rounded-md text-slate-600 font-semibold border border-slate-200 shadow-sm">Physician Supervision</span>
@@ -73,10 +73,10 @@
                         <span>臨床医学・運動科学に基づく厳密なアプローチ</span>
                     </div>
                     <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight px-1">
-                        医師の視点から導く、<br><span class="gradient-text">個別化された最高峰のヘルスプログラム</span>
+                        医師の視点から導く、<br><span class="gradient-text">個別化された最高峰のメディカル・フィットネス</span>
                     </h1>
                     <p class="text-slate-600 max-w-2xl mx-auto text-xs sm:text-sm md:text-base leading-relaxed px-2">
-                        主観的な指導や根拠のないトレンドを完全に排除。あなたの代謝シグナル、活動量、そして既往歴リスクを臨床医学の視点から統合的にスクリーニングし、身体への安全性が担保された最適なヘルスプランを処方します。
+                        主観的な指導や根拠のないトレンドを完全に排除。あなたの代謝シグナル、活動量、そして既往歴リスクを臨床医学の視点から統合的にスクリーニングし、身体への安全性が担保された最適なメディカル・フィットネスプランを処方します。
                     </p>
                 </div>
 
@@ -101,7 +101,7 @@
 
                 <div class="pt-2 px-2">
                     <button onclick="startQuiz()" class="w-full sm:w-auto px-10 py-4.5 btn-gradient text-white font-bold text-base rounded-xl shadow-lg shadow-blue-900/10 hover:opacity-95 transition transform hover:-translate-y-0.5 cursor-pointer tracking-wider">
-                        無料のヘルスプログラム分析を開始する
+                        無料のメディカル・フィットネス分析を開始する
                     </button>
                     <p class="text-[11px] text-slate-400 mt-3 font-medium">※所要時間約3分 / 分析結果は即時画面上に発行されます</p>
                 </div>
@@ -142,7 +142,7 @@
                         <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
                         <span>Analysis Report Completed</span>
                     </div>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">メディカル・ヘルスケア処方箋</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">メディカル・フィットネス処方箋</h2>
                     <p class="text-slate-500 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
                         あなたの入力データ、活動係数、および臨床リスクスクリーニングを統合解析した、最適なプログラムです。
                     </p>
@@ -156,7 +156,7 @@
                     <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-50 rounded-full blur-2xl pointer-events-none"></div>
                     <div class="space-y-3 max-w-xl mx-auto">
                         <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
-                            医師監修プログラムの個別サポートを受けませんか？
+                            医師監修メディカル・フィットネスの個別サポートを受けませんか？
                         </h3>
                         <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
                             現在の代謝・既往歴リスク環境をさらに詳細に臨床評価し、あなたのライフスタイルに合わせた具体的なスケジュール構成や食事マネジメントを行う「無料オンライン面談（15分）」を承ります。
@@ -176,7 +176,7 @@
 
     <!-- Footer -->
     <footer class="w-full text-center py-6 px-4 text-[11px] text-slate-400 border-t border-slate-200 font-mono relative z-10 space-y-0.5">
-        <div>&copy; 2026 Medical Healthcare Program. All Rights Reserved.</div>
+        <div>&copy; 2026 Medical Fitness Program. All Rights Reserved.</div>
         <div class="text-slate-400">Evidence-Based Medicine & Progressive Exercise Science Optimization.</div>
     </footer>
 
@@ -654,8 +654,8 @@ ${prescriptionMenu.map((m, i) => `${i+1}. ${m.name}`).join('\n')}
 
         // 3. メール送信ロジック（メーラー起動）
         function sendConsultationEmail() {
-            const subject = encodeURIComponent("【Medical Healthcare】無料個別カウンセリング面談申込");
-            const body = encodeURIComponent(`Medical Healthcare Program 運営事務局 御中\n\n無料個別カウンセリング面談（15分）を申し込みます。\n\n以下、私のパーソナルスクリーニング結果です。\n---------------------------------------\n${globalReportText}\n---------------------------------------\n\nよろしくお願いいたします。`);
+            const subject = encodeURIComponent("【Medical Fitness】無料個別カウンセリング面談申込");
+            const body = encodeURIComponent(`Medical Fitness Program 運営事務局 御中\n\n無料個別カウンセリング面談（15分）を申し込みます。\n\n以下、私のパーソナルスクリーニング結果です。\n---------------------------------------\n${globalReportText}\n---------------------------------------\n\nよろしくお願いいたします。`);
             window.location.href = `mailto:info@example.com?subject=${subject}&body=${body}`;
         }
     </script>
