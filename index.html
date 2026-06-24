@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medical Fitness Program | 医師監修パーソナル処方</title>
-    <!-- Tailwind CSS (v4) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -44,11 +42,9 @@
 </head>
 <body class="text-slate-700 min-h-screen flex flex-col justify-between antialiased selection:bg-blue-500/10 selection:text-blue-900">
 
-    <!-- Background Decorative Gradients -->
     <div class="fixed top-0 left-1/3 w-[500px] h-[500px] bg-blue-200/20 rounded-full blur-3xl pointer-events-none"></div>
     <div class="fixed bottom-10 right-1/4 w-[400px] h-[400px] bg-sky-200/30 rounded-full blur-3xl pointer-events-none"></div>
 
-    <!-- Header -->
     <header class="w-full max-w-5xl mx-auto px-4 md:px-6 py-5 flex justify-between items-center border-b border-slate-200/60 relative z-10">
         <div class="flex items-center space-x-2.5">
             <div class="relative flex h-2.5 w-2.5">
@@ -62,11 +58,9 @@
         </div>
     </header>
 
-    <!-- Main Container -->
     <main class="flex-grow flex items-center justify-center p-4 md:p-6 relative z-10 w-full max-w-5xl mx-auto">
         <div class="w-full max-w-3xl">
 
-            <!-- ================= START PAGE ================= -->
             <div id="start-page" class="text-center space-y-6 md:space-y-10 py-4 fade-in">
                 <div class="space-y-4">
                     <div class="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 px-3.5 py-1 rounded-full text-xs text-blue-700 font-medium shadow-sm">
@@ -80,7 +74,6 @@
                     </p>
                 </div>
 
-                <!-- Feature Matrix -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-left px-1">
                     <div class="medical-card p-5 rounded-2xl space-y-2">
                         <div class="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">01</div>
@@ -107,23 +100,18 @@
                 </div>
             </div>
 
-            <!-- ================= QUIZ CONTAINER ================= -->
             <div id="quiz-container" class="hidden medical-card p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl space-y-6 relative overflow-hidden fade-in">
-                <!-- Progress Header -->
                 <div class="flex justify-between items-center text-[11px] font-mono">
                     <span id="question-category" class="text-blue-600 uppercase tracking-widest font-bold">Category</span>
                     <span id="question-counter" class="text-slate-400 font-medium">0 / 0</span>
                 </div>
                 
-                <!-- Progress Bar -->
                 <div class="w-full bg-slate-200 h-1 rounded-full overflow-hidden">
                     <div id="progress" class="btn-gradient h-1 transition-all duration-300" style="width: 0%"></div>
                 </div>
 
-                <!-- Question Box (Dynamic Injection) -->
                 <div id="question-box" class="min-h-[220px] md:min-h-[260px] flex flex-col justify-center"></div>
 
-                <!-- Navigation Controls -->
                 <div class="flex justify-between items-center pt-4 border-t border-slate-100">
                     <button id="prev-btn" onclick="prevQuestion()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition disabled:opacity-0 disabled:pointer-events-none cursor-pointer">
                         ← 戻る
@@ -135,7 +123,6 @@
                 </div>
             </div>
 
-            <!-- ================= RESULT PAGE ================= -->
             <div id="result-page" class="hidden space-y-6 md:space-y-8 py-2 fade-in">
                 <div class="text-center space-y-2 px-2">
                     <div class="inline-flex items-center space-x-2 bg-emerald-50 border border-emerald-100 px-3 py-1 rounded-full text-[11px] text-emerald-700 font-semibold tracking-wider mx-auto shadow-sm">
@@ -148,10 +135,8 @@
                     </p>
                 </div>
 
-                <!-- Result Cards Destination -->
                 <div id="result-content" class="space-y-5 md:space-y-6"></div>
 
-                <!-- CTA Form -->
                 <div class="medical-card p-6 sm:p-10 rounded-2xl sm:rounded-3xl border border-blue-100 text-center space-y-5 md:space-y-6 relative overflow-hidden bg-gradient-to-b from-white to-slate-50/50 mx-1 shadow-xl">
                     <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-50 rounded-full blur-2xl pointer-events-none"></div>
                     <div class="space-y-3 max-w-xl mx-auto">
@@ -163,10 +148,12 @@
                         </p>
                     </div>
                     <div class="pt-2">
-                        <button onclick="sendConsultationEmail()" class="w-full sm:w-auto px-10 py-4.5 btn-gradient text-white font-extrabold rounded-xl shadow-lg shadow-blue-500/20 hover:opacity-95 transition transform hover:-translate-y-0.5 cursor-pointer tracking-wide text-base">
-                            この内容で無料面談を申し込む
+                        <button onclick="submitToGoogleForm()" class="w-full sm:w-auto px-10 py-4.5 btn-gradient text-white font-extrabold rounded-xl shadow-lg shadow-blue-500/20 hover:opacity-95 transition transform hover:-translate-y-0.5 cursor-pointer tracking-wide text-base flex items-center justify-center space-x-2 mx-auto">
+                            <span>この分析結果を添えて無料面談を申し込む</span>
                         </button>
-                        <p class="text-[11px] text-slate-400 mt-2.5 font-medium">ボタンを押すとメーラーが起動し、今回の簡易分析結果が自動的に本文へ添付されます</p>
+                        <p class="text-[11px] text-slate-400 mt-2.5 font-medium leading-relaxed">
+                            ※ボタンを押すと、今回の回答内容と最終分析データをまとめた面談資料が自動的にコピーされ、Googleフォームへ安全に引き継がれます。
+                        </p>
                     </div>
                 </div>
             </div>
@@ -174,13 +161,11 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="w-full text-center py-6 px-4 text-[11px] text-slate-400 border-t border-slate-200 font-mono relative z-10 space-y-0.5">
         <div>&copy; 2026 Medical Fitness Program. All Rights Reserved.</div>
         <div class="text-slate-400">Evidence-Based Medicine & Progressive Exercise Science Optimization.</div>
     </footer>
 
-    <!-- ================= JAVASCRIPT LOGIC ================= -->
     <script>
         // 1. クイズデータ定義（全11問）
         const questions = [
@@ -338,7 +323,6 @@
             document.getElementById("prev-btn").disabled = currentQuestionIndex === 0;
             const nextBtn = document.getElementById("next-btn");
             
-            // 最終問題のボタン切り替え
             if (currentQuestionIndex === questions.length - 1) {
                 nextBtn.innerHTML = `<span>処方箋を生成する</span><span class="font-bold">✓</span>`;
                 nextBtn.classList.replace("bg-slate-800", "bg-blue-600");
@@ -347,7 +331,6 @@
                 nextBtn.classList.replace("bg-blue-600", "bg-slate-800");
             }
 
-            // ラジオボタン質問かつ、まだ回答が選ばれていない場合は「次へ」を半透明（未アクティブ）にする
             if (q.type === "radio" && !answers[q.name]) {
                 nextBtn.classList.add("opacity-40");
             } else {
@@ -402,24 +385,17 @@
             box.innerHTML = html;
         }
 
-        // ラジオボタン選択時：自動遷移せず、ハイライトの即時切り替えと次へボタンのアクティブ化を行う
         function saveRadioValue(name, value, element) {
             answers[name] = value;
-            
-            // 1. 同一グループのすべてのカードの選択スタイルをリセット
             const container = element.closest('.space-y-2\\.5');
             const labels = container.querySelectorAll('label');
             labels.forEach(label => {
                 label.classList.remove('border-blue-500', 'bg-blue-50/40', 'shadow-sm');
                 label.classList.add('border-slate-200', 'bg-white');
             });
-            
-            // 2. クリックされた選択肢のカードだけを瞬時にハイライト
             const activeLabel = element.closest('label');
             activeLabel.classList.remove('border-slate-200', 'bg-white');
             activeLabel.classList.add('border-blue-500', 'bg-blue-50/40', 'shadow-sm');
-            
-            // 3. 「次へ」ボタンをアクティブにする（半透明を解除）
             document.getElementById("next-btn").classList.remove("opacity-40");
         }
 
@@ -478,21 +454,21 @@
             const weight = parseFloat(answers.weight);
             const height = parseFloat(answers.height);
             const age = parseInt(answers.age);
-            const gender = answers.gender;
+            const gender = answers.gender === "male" ? "男性" : "女性";
             
-            // 男女別のMifflin-St Jeor式計算法の適正化
             let bmr = 0;
-            if (gender === "male") {
+            if (answers.gender === "male") {
                 bmr = Math.round((10 * weight) + (6.25 * height) - (5 * age) + 5);
             } else {
                 bmr = Math.round((10 * weight) + (6.25 * height) - (5 * age) - 161);
             }
             
             let activityFactor = 1.2; 
-            if (answers.steps === "sedentary") activityFactor = 1.15;
-            else if (answers.steps === "light") activityFactor = 1.35;
-            else if (answers.steps === "active") activityFactor = 1.55;
-            else if (answers.steps === "highly_active") activityFactor = 1.75;
+            let stepLabel = "";
+            if (answers.steps === "sedentary") { activityFactor = 1.15; stepLabel = "5,000歩未満（座りっぱなし）"; }
+            else if (answers.steps === "light") { activityFactor = 1.35; stepLabel = "5,000〜7,499歩（一般的通勤）"; }
+            else if (answers.steps === "active") { activityFactor = 1.55; stepLabel = "7,500〜9,999歩（意識的歩行）"; }
+            else if (answers.steps === "highly_active") { activityFactor = 1.75; stepLabel = "10,000歩以上（非常に活動的）"; }
             
             let tdee = Math.round(bmr * activityFactor);
             let targetCalories = tdee;
@@ -530,7 +506,6 @@
                 insulinClinicalBreakdown = "細胞のインスリン感受性が非常に高く、摂取した炭水化物が効率よく筋肉のエネルギー（グリコーゲン）に変換されやすい理想的な状態です。炭水化物をトレーニングの主要燃料として正しく機能させます。";
             }
 
-            // 既往歴に応じた医学的スクリーニング＆アドバイス
             let medicalHistory = answers.medical_history || [];
             let medicalRiskRoute = "一般健康管理スキーム";
             let medicalPrescriptionText = "現在、目立った臨床リスクは指摘されていません。基本の強度設定に沿って安全に運動プログラムを進めてください。";
@@ -572,22 +547,34 @@
                 neatPrescription = `【優秀な代謝維持：食後10分のアクティベーション】日常の活動量は素晴らしい基準です。現在の歩数を維持したまま、毎食後に10分間だけ歩くか、またはマイルドなストレッチを行うことで、インスリン感受性をさらに高いレベルで維持できます。`;
             }
 
+            // ================= 面談資料（提出用データ）の生成 =================
             globalReportText = `
-【総合診断ルート】: ${goalRouteTitle}
-【医療リスク評価】: ${medicalRiskRoute}
-【インスリン感受性】: ${insulinStatus}
-【1日のターゲットマクロ設定】:
-・総エネルギー: ${targetCalories} kcal
-・タンパク質(P): ${p} g
-・脂質(F): ${f} g
-・炭水化物(C): ${c} g
-【処方メニュー】:
+【1. クイズ回答履歴（基本属性）】
+・年齢: ${age}歳
+・身長: ${height}cm
+・体重: ${weight}kg
+・性別: ${gender}
+・1日の平均歩数: ${stepLabel}
+・トレーニング想定環境: ${environmentText}
+・週の可能投資回数: ${answers.frequency === 'low' ? '週1〜2回' : answers.frequency === 'mid' ? '週3回' : '週4回以上'}
+
+【2. 臨床スクリーニング結果】
+・総合診断ルート: ${goalRouteTitle}
+・医療既往リスク評価: ${medicalRiskRoute}
+・インスリン感受性ステータス: ${insulinStatus}
+
+【3. 処方マクロ栄養設定】
+・総目標エネルギー: ${targetCalories} kcal
+・P（タンパク質）: ${p} g
+・F（脂質）: ${f} g
+・C（炭水化物）: ${c} g
+
+【4. 処方された最適運動メニュー】
 ${prescriptionMenu.map((m, i) => `${i+1}. ${m.name}`).join('\n')}
             `.trim();
 
             const resultContent = document.getElementById("result-content");
             resultContent.innerHTML = `
-                <!-- 1. カロリー＆PFC分配処方 -->
                 <div class="medical-card p-5 md:p-8 rounded-2xl border-l-4 border-blue-600 space-y-4 shadow-md mx-1">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                         <h4 class="text-xs font-bold tracking-widest text-blue-700 uppercase font-mono">01 / エネルギー＆マクロ栄養処方箋</h4>
@@ -614,58 +601,7 @@ ${prescriptionMenu.map((m, i) => `${i+1}. ${m.name}`).join('\n')}
                     <p class="text-xs text-slate-500 leading-relaxed">${calorieStrategyText}</p>
                 </div>
 
-                <!-- 2. 医療リスク・既往歴スクリーニング -->
                 <div class="medical-card p-5 md:p-8 rounded-2xl border-l-4 border-red-500 space-y-3 shadow-md mx-1">
                     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                         <h4 class="text-xs font-bold tracking-widest text-red-700 uppercase font-mono">02 / 包括的臨床既往リスク管理</h4>
-                        <span class="px-2.5 py-0.5 bg-red-50 text-red-700 rounded-md font-bold text-xs">${medicalRiskRoute}</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${medicalPrescriptionText}</p>
-                </div>
-
-                <!-- 3. インスリン感受性・糖代謝解析 -->
-                <div class="medical-card p-5 md:p-8 rounded-2xl border-l-4 border-sky-500 space-y-3 shadow-md mx-1">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                        <h4 class="text-xs font-bold tracking-widest text-sky-700 uppercase font-mono">03 / 代謝シグナル・糖代謝評価</h4>
-                        <span class="px-2.5 py-0.5 bg-sky-50 text-sky-700 rounded-md font-bold text-xs">${insulinStatus}</span>
-                    </div>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${insulinClinicalBreakdown}</p>
-                </div>
-
-                <!-- 4. トレーニングメニュー処方 -->
-                <div class="medical-card p-5 md:p-8 rounded-2xl border-l-4 border-emerald-500 space-y-4 shadow-md mx-1">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                        <h4 class="text-xs font-bold tracking-widest text-emerald-700 uppercase font-mono">04 / 運動力学整合型プログラム</h4>
-                        <span class="px-2.5 py-0.5 bg-emerald-50 text-emerald-700 rounded-md font-mono text-[10px] font-bold uppercase border border-emerald-100">推奨環境: ${environmentText}</span>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
-                        ${prescriptionMenu.map((m, i) => `
-                            <div class="bg-slate-50/60 p-4 rounded-xl border border-slate-100 space-y-1">
-                                <div class="flex items-center space-x-2">
-                                    <span class="w-5 h-5 rounded-md bg-emerald-100 flex items-center justify-center text-emerald-700 font-mono text-xs font-bold">${i+1}</span>
-                                    <span class="text-sm font-bold text-slate-900">${m.name}</span>
-                                </div>
-                                <p class="text-[11px] sm:text-xs text-slate-500 leading-relaxed">${m.reason}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-
-                <!-- 5. ライフスタイル・NEAT処方 -->
-                <div class="medical-card p-5 md:p-8 rounded-2xl border-l-4 border-purple-500 space-y-3 shadow-md mx-1">
-                    <h4 class="text-xs font-bold tracking-widest text-purple-700 uppercase font-mono">05 / 日常活動代謝（NEAT）最適化処方</h4>
-                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${neatPrescription}</p>
-                </div>
-            `;
-        }
-
-        // 3. メール送信ロジック（メーラー起動）
-        function sendConsultationEmail() {
-            const subject = encodeURIComponent("【Medical Fitness】無料個別カウンセリング面談申込");
-            const body = encodeURIComponent(`Medical Fitness Program 運営事務局 御中\n\n無料個別カウンセリング面談（15分）を申し込みます。\n\n以下、私のパーソナルスクリーニング結果です。\n---------------------------------------\n${globalReportText}\n---------------------------------------\n\nよろしくお願いいたします。`);
-            window.location.href = `mailto:info@example.com?subject=${subject}&body=${body}`;
-        }
-    </script>
-</body>
-</html>
+                        <span class="px-2.5 py-0.5 bg-red-50 text-red-700 rounded-md font-bold text-xs">${medicalRiskRoute}
