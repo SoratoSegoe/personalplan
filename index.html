@@ -76,7 +76,7 @@
                         医師の視点から導く、<br><span class="gradient-text">個別化された最高峰のメディカル・フィットネス</span>
                     </h1>
                     <p class="text-slate-600 max-w-2xl mx-auto text-xs sm:text-sm md:text-base leading-relaxed px-2">
-                        主観的な指導や根拠のないトレンドを完全に排除。あなたの代謝シグナル、活動量、そして既往歴リスクを臨床医学の視点から統合的にスクリーニングし、身体への安全性が担保された最適なメディカル・フィットネスプランを処方します。
+                        主観的な指導や根拠のないトレンドを完全に排除。あなたの代謝シグナル、活動量、および既往歴リスクを臨床医学の視点から統合的にスクリーニングし、身体への安全性が担保された最適なメディカル・フィットネスプランを処方します。
                     </p>
                 </div>
 
@@ -347,8 +347,8 @@
                 nextBtn.classList.replace("bg-blue-600", "bg-slate-800");
             }
 
-            // 入力コントロールの非表示/表示（複数選択と数値入力以外は、次へボタンを補助扱いに）
-            if (q.type === "radio") {
+            // ラジオボタン質問かつ、まだ回答が選ばれていない場合は「次へ」を半透明（未アクティブ）にする
+            if (q.type === "radio" && !answers[q.name]) {
                 nextBtn.classList.add("opacity-40");
             } else {
                 nextBtn.classList.remove("opacity-40");
@@ -378,7 +378,7 @@
                     const activeClass = checked ? "border-blue-500 bg-blue-50/40 shadow-sm" : "border-slate-200 bg-white";
                     html += `
                         <label class="flex items-center space-x-3 border ${activeClass} rounded-xl p-4 cursor-pointer hover:border-slate-300 hover:bg-slate-50/50 transition group">
-                            <input type="radio" name="${q.name}" value="${opt.value}" ${checked} onchange="saveRadioValue('${q.name}', '${opt.value}')" class="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500 bg-white shrink-0 cursor-pointer" />
+                            <input type="radio" name="${q.name}" value="${opt.value}" ${checked} onchange="saveRadioValue('${q.name}', '${opt.value}', this)" class="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500 bg-white shrink-0 cursor-pointer" />
                             <span class="text-xs sm:text-sm md:text-base font-medium text-slate-700 group-hover:text-slate-900 transition leading-relaxed">${opt.label}</span>
                         </label>`;
                 });
@@ -402,17 +402,25 @@
             box.innerHTML = html;
         }
 
-        // ラジオボタン選択時：値を保存し、スムーズに自動遷移させる
-        function saveRadioValue(name, value) {
+        // ラジオボタン選択時：自動遷移せず、ハイライトの即時切り替えと次へボタンのアクティブ化を行う
+        function saveRadioValue(name, value, element) {
             answers[name] = value;
-            setTimeout(() => {
-                if (currentQuestionIndex < questions.length - 1) {
-                    currentQuestionIndex++;
-                    showQuestion();
-                } else {
-                    generateMedicalReport();
-                }
-            }, 250); // 選択のフィードバックを感じられる絶妙なディレイ（250ms）
+            
+            // 1. 同一グループのすべてのカードの選択スタイルをリセット
+            const container = element.closest('.space-y-2\\.5');
+            const labels = container.querySelectorAll('label');
+            labels.forEach(label => {
+                label.classList.remove('border-blue-500', 'bg-blue-50/40', 'shadow-sm');
+                label.classList.add('border-slate-200', 'bg-white');
+            });
+            
+            // 2. クリックされた選択肢のカードだけを瞬時にハイライト
+            const activeLabel = element.closest('label');
+            activeLabel.classList.remove('border-slate-200', 'bg-white');
+            activeLabel.classList.add('border-blue-500', 'bg-blue-50/40', 'shadow-sm');
+            
+            // 3. 「次へ」ボタンをアクティブにする（半透明を解除）
+            document.getElementById("next-btn").classList.remove("opacity-40");
         }
 
         function saveCheckboxValue(name) {
