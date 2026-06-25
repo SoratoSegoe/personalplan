@@ -2,16 +2,19 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Medical Fitness Program | 医師監修パーソナル処方</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            background-color: #f4f7fa; /* 信頼感のある最高級医療SaaS向けライトグレー */
+            background-color: #f4f7fa;
+            /* スマホでの意図しないテキスト改行を防ぎつつ綺麗に収める */
+            word-break: keep-all;
+            overflow-wrap: anywhere;
         }
         .gradient-text {
             background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
@@ -22,136 +25,137 @@
             background: linear-gradient(135deg, #1e40af 0%, #0284c7 100%);
         }
         .medical-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(30, 41, 59, 0.05);
-            box-shadow: 0 4px 20px -2px rgba(30, 41, 59, 0.05);
-        }
-        .medical-card:hover {
-            border-color: rgba(2, 132, 199, 0.15);
-            box-shadow: 0 12px 30px -4px rgba(30, 41, 59, 0.08);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(30, 41, 59, 0.08);
+            box-shadow: 0 4px 12px rgba(30, 41, 59, 0.03);
         }
         .fade-in {
-            animation: fadeIn 0.4s ease-out forwards;
+            animation: fadeIn 0.3s ease-out forwards;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+        /* スマホのタップ時の青いハイライトを消去 */
+        button, label, input {
+            -webkit-tap-highlight-color: transparent;
         }
     </style>
 </head>
-<body class="text-slate-700 min-h-screen flex flex-col justify-between antialiased selection:bg-blue-500/10 selection:text-blue-900">
+<body class="text-slate-700 min-h-screen flex flex-col justify-between antialiased selection:bg-blue-500/10">
 
-    <div class="fixed top-0 left-1/3 w-[500px] h-[500px] bg-blue-200/20 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="fixed bottom-10 right-1/4 w-[400px] h-[400px] bg-sky-200/30 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full max-w-md h-[300px] bg-blue-200/10 rounded-full blur-3xl pointer-events-none z-0"></div>
 
-    <header class="w-full max-w-5xl mx-auto px-4 md:px-6 py-5 flex justify-between items-center border-b border-slate-200/60 relative z-10">
-        <div class="flex items-center space-x-2.5">
-            <div class="relative flex h-2.5 w-2.5">
+    <header class="w-full max-w-3xl mx-auto px-4 py-4 flex justify-between items-center border-b border-slate-200/60 relative z-10">
+        <div class="flex items-center space-x-2">
+            <span class="relative flex h-2 w-2">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-600"></span>
-            </div>
-            <span class="font-bold tracking-widest text-xs md:text-sm uppercase text-slate-800 font-mono">Medical Fitness Program</span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600"></span>
+            </span>
+            <span class="font-bold tracking-wider text-xs uppercase text-slate-800 font-mono">Medical Fitness</span>
         </div>
         <div>
-            <span class="text-[10px] uppercase tracking-wider bg-white px-3 py-1 rounded-md text-slate-600 font-semibold border border-slate-200 shadow-sm">Physician Supervision</span>
+            <span class="text-[9px] uppercase tracking-wider bg-white px-2.5 py-1 rounded text-slate-600 font-bold border border-slate-200 shadow-sm">Physician Supervision</span>
         </div>
     </header>
 
-    <main class="flex-grow flex items-center justify-center p-4 md:p-6 relative z-10 w-full max-w-5xl mx-auto">
-        <div class="w-full max-w-3xl">
+    <main class="flex-grow flex items-center justify-center px-3 py-4 relative z-10 w-full max-w-3xl mx-auto">
+        <div class="w-full">
 
-            <div id="start-page" class="text-center space-y-6 md:space-y-10 py-4 fade-in">
-                <div class="space-y-4">
-                    <div class="inline-flex items-center space-x-2 bg-blue-50 border border-blue-100 px-3.5 py-1 rounded-full text-xs text-blue-700 font-medium shadow-sm">
-                        <span>臨床医学・運動科学に基づく厳密なアプローチ</span>
+            <div id="start-page" class="text-center space-y-6 py-2 fade-in">
+                <div class="space-y-3.5">
+                    <div class="inline-flex items-center bg-blue-50 border border-blue-100 px-3 py-1 rounded-full text-[10px] text-blue-700 font-medium mx-auto">
+                        <span>臨床医学・運動科学に基づく厳密な処方</span>
                     </div>
-                    <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900 leading-tight px-1">
-                        医師の視点から導く、<br><span class="gradient-text">個別化された最高峰のメディカル・フィットネス</span>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-snug px-1">
+                        医師の視点から導く、<br><span class="gradient-text">個別化された最高峰の<br>メディカル・フィットネス</span>
                     </h1>
-                    <p class="text-slate-600 max-w-2xl mx-auto text-xs sm:text-sm md:text-base leading-relaxed px-2">
-                        主観的な指導や根拠のないトレンドを完全に排除。あなたの代謝シグナル、活動量、および既往歴リスクを臨床医学の視点から統合的にスクリーニングし、身体への安全性が担保された最適なメディカル・フィットネスプランを処方します。
+                    <p class="text-slate-500 text-xs leading-relaxed max-w-md mx-auto px-3">
+                        主観的な指導を完全に排除。あなたの代謝シグナル、活動量、および既往歴リスクを臨床医学の視点から統合的にスクリーニングし、安全性が担保された最適なプランを処方します。
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl mx-auto text-left px-1">
-                    <div class="medical-card p-5 rounded-2xl space-y-2">
-                        <div class="w-7 h-7 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs">01</div>
-                        <h4 class="text-sm font-bold text-slate-900">客観データ代謝計算</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">日常の平均歩数（NEAT指標）に基づき、あなたの生体に合わせた消費エネルギーを計算。</p>
+                <div class="grid grid-cols-1 gap-2.5 max-w-sm mx-auto text-left px-2">
+                    <div class="medical-card p-3.5 rounded-xl flex items-start space-x-3">
+                        <div class="w-6 h-6 rounded bg-blue-50 flex items-center justify-center text-blue-600 font-bold text-xs shrink-0 mt-0.5">1</div>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">客観データ代謝計算</h4>
+                            <p class="text-[11px] text-slate-500 leading-normal mt-0.5">日常の平均歩数（NEAT指標）に基づき消費エネルギーを算出。</p>
+                        </div>
                     </div>
-                    <div class="medical-card p-5 rounded-2xl space-y-2">
-                        <div class="w-7 h-7 rounded-lg bg-sky-50 flex items-center justify-center text-sky-600 font-bold text-xs">02</div>
-                        <h4 class="text-sm font-bold text-slate-900">内分泌・糖代謝評価</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">食後の眠気や睡眠動態から、インスリン感受性とストレス環境を高い精度で推測。</p>
+                    <div class="medical-card p-3.5 rounded-xl flex items-start space-x-3">
+                        <div class="w-6 h-6 rounded bg-sky-50 flex items-center justify-center text-sky-600 font-bold text-xs shrink-0 mt-0.5">2</div>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">内分泌・糖代謝評価</h4>
+                            <p class="text-[11px] text-slate-500 leading-normal mt-0.5">食後の眠気や睡眠からインスリン感受性とストレスを推測。</p>
+                        </div>
                     </div>
-                    <div class="medical-card p-5 rounded-2xl space-y-2">
-                        <div class="w-7 h-7 rounded-lg bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold text-xs">03</div>
-                        <h4 class="text-sm font-bold text-slate-900">包括的リスク管理</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed">解剖学的禁忌や既往歴に配慮したリスク管理を徹底し、安全な運動選定を行います。</p>
+                    <div class="medical-card p-3.5 rounded-xl flex items-start space-x-3">
+                        <div class="w-6 h-6 rounded bg-emerald-50 flex items-center justify-center text-emerald-600 font-bold text-xs shrink-0 mt-0.5">3</div>
+                        <div>
+                            <h4 class="text-xs font-bold text-slate-900">包括的リスク管理</h4>
+                            <p class="text-[11px] text-slate-500 leading-normal mt-0.5">解剖学的禁忌や既往歴に配慮し、安全な運動を選定します。</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="pt-2 px-2">
-                    <button onclick="startQuiz()" class="w-full sm:w-auto px-10 py-4.5 btn-gradient text-white font-bold text-base rounded-xl shadow-lg shadow-blue-900/10 hover:opacity-95 transition transform hover:-translate-y-0.5 cursor-pointer tracking-wider">
-                        無料のメディカル・フィットネス分析を開始する
+                <div class="pt-2 px-3">
+                    <button id="start-quiz-btn" class="w-full max-w-sm px-6 py-4 btn-gradient text-white font-bold text-sm rounded-xl shadow-md active:scale-[0.99] transition transform cursor-pointer tracking-wider block mx-auto">
+                        無料の分析を開始する
                     </button>
-                    <p class="text-[11px] text-slate-400 mt-3 font-medium">※所要時間約3分 / 分析結果は即時画面上に発行されます</p>
+                    <p class="text-[10px] text-slate-400 mt-2">※所要時間約3分 / 分析結果は即時発行されます</p>
                 </div>
             </div>
 
-            <div id="quiz-container" class="hidden medical-card p-5 sm:p-8 md:p-10 rounded-2xl sm:rounded-3xl shadow-xl space-y-6 relative overflow-hidden fade-in">
-                <div class="flex justify-between items-center text-[11px] font-mono">
-                    <span id="question-category" class="text-blue-600 uppercase tracking-widest font-bold">Category</span>
+            <div id="quiz-container" class="hidden medical-card p-4 sm:p-6 rounded-2xl shadow-md space-y-4 relative overflow-hidden fade-in mx-2">
+                <div class="flex justify-between items-center text-[10px] font-mono">
+                    <span id="question-category" class="text-blue-600 uppercase tracking-wider font-bold">Category</span>
                     <span id="question-counter" class="text-slate-400 font-medium">0 / 0</span>
                 </div>
                 
                 <div class="w-full bg-slate-200 h-1 rounded-full overflow-hidden">
-                    <div id="progress" class="btn-gradient h-1 transition-all duration-300" style="width: 0%"></div>
+                    <div id="progress" class="btn-gradient h-1 transition-all duration-200" style="width: 0%"></div>
                 </div>
 
-                <div id="question-box" class="min-h-[220px] md:min-h-[260px] flex flex-col justify-center"></div>
+                <div id="question-box" class="min-h-[180px] flex flex-col justify-center py-2"></div>
 
-                <div class="flex justify-between items-center pt-4 border-t border-slate-100">
-                    <button id="prev-btn" onclick="prevQuestion()" class="px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition disabled:opacity-0 disabled:pointer-events-none cursor-pointer">
+                <div class="flex justify-between items-center pt-3 border-t border-slate-100">
+                    <button id="prev-btn" class="px-3 py-2 rounded-lg text-xs font-semibold text-slate-400 active:bg-slate-100 transition disabled:opacity-0 disabled:pointer-events-none cursor-pointer">
                         ← 戻る
                     </button>
-                    <button id="next-btn" onclick="nextQuestion()" class="px-5 py-2.5 sm:px-6 sm:py-3 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs sm:text-sm font-semibold transition cursor-pointer flex items-center space-x-1.5">
-                        <span>次へ</span>
-                        <span>→</span>
+                    <button id="next-btn" class="px-5 py-2.5 bg-slate-800 active:bg-slate-950 text-white rounded-xl text-xs font-semibold transition cursor-pointer flex items-center space-x-1">
+                        <span id="next-btn-text">次へ</span>
+                        <span id="next-btn-arrow">→</span>
                     </button>
                 </div>
             </div>
 
-            <div id="result-page" class="hidden space-y-6 md:space-y-8 py-2 fade-in">
-                <div class="text-center space-y-2 px-2">
-                    <div class="inline-flex items-center space-x-2 bg-emerald-50 border border-emerald-100 px-3 py-1 rounded-full text-[11px] text-emerald-700 font-semibold tracking-wider mx-auto shadow-sm">
-                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
+            <div id="result-page" class="hidden space-y-5 py-1 fade-in mx-2">
+                <div class="text-center space-y-1 px-2">
+                    <div class="inline-flex items-center space-x-1.5 bg-emerald-50 border border-emerald-100 px-2.5 py-0.5 rounded-full text-[10px] text-emerald-700 font-semibold tracking-wider mx-auto">
+                        <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span>
                         <span>Analysis Report Completed</span>
                     </div>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">メディカル・フィットネス処方箋</h2>
-                    <p class="text-slate-500 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-                        あなたの入力データ、活動係数、および臨床リスクスクリーニングを統合解析した、最適なプログラムです。
-                    </p>
+                    <h2 class="text-xl font-extrabold text-slate-900 tracking-tight">メディカル・フィットネス処方箋</h2>
                 </div>
 
-                <div id="result-content" class="space-y-5 md:space-y-6"></div>
+                <div id="result-content" class="space-y-4"></div>
 
-                <div class="medical-card p-6 sm:p-10 rounded-2xl sm:rounded-3xl border border-blue-100 text-center space-y-5 md:space-y-6 relative overflow-hidden bg-gradient-to-b from-white to-slate-50/50 mx-1 shadow-xl">
-                    <div class="absolute -right-10 -top-10 w-40 h-40 bg-blue-50 rounded-full blur-2xl pointer-events-none"></div>
-                    <div class="space-y-3 max-w-xl mx-auto">
-                        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug">
-                            医師監修メディカル・フィットネスの個別サポートを受けませんか？
+                <div class="medical-card p-5 sm:p-6 rounded-2xl border border-blue-100 text-center space-y-4 bg-gradient-to-b from-white to-slate-50/50 shadow-md">
+                    <div class="space-y-2 max-w-md mx-auto">
+                        <h3 class="text-base font-extrabold text-slate-900 leading-snug">
+                            医師監修メディカル・フィットネスの<br>個別サポートを受けませんか？
                         </h3>
-                        <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                            現在の代謝・既往歴リスク環境をさらに詳細に臨床評価し、あなたのライフスタイルに合わせた具体的なスケジュール構成や食事マネジメントを行う「無料オンライン面談（15分）」を承ります。
+                        <p class="text-slate-500 text-[11px] encoding-relaxed">
+                            現在の代謝・既往歴リスク環境をさらに詳細に臨床評価し、具体的なスケジュール構成や食事マネジメントを行う「無料オンライン面談（15分）」を承ります。
                         </p>
                     </div>
-                    <div class="pt-2">
-                        <button onclick="submitToGoogleForm()" class="w-full sm:w-auto px-10 py-4.5 btn-gradient text-white font-extrabold rounded-xl shadow-lg shadow-blue-500/20 hover:opacity-95 transition transform hover:-translate-y-0.5 cursor-pointer tracking-wide text-base flex items-center justify-center space-x-2 mx-auto">
-                            <span>この分析結果を添えて無料面談を申し込む</span>
+                    <div class="pt-1">
+                        <button id="submit-form-btn" class="w-full max-w-sm px-4 py-3.5 btn-gradient text-white font-bold rounded-xl shadow-md active:scale-[0.99] transition transform cursor-pointer text-xs tracking-wide">
+                            この分析結果を添えて無料面談を申し込む
                         </button>
-                        <p class="text-[11px] text-slate-400 mt-2.5 font-medium leading-relaxed">
+                        <p class="text-[9px] text-slate-400 mt-2 leading-normal">
                             ※ボタンを押すと、今回の回答内容と最終分析データをまとめた面談資料が自動的にコピーされ、Googleフォームへ安全に引き継がれます。
                         </p>
                     </div>
@@ -161,13 +165,12 @@
         </div>
     </main>
 
-    <footer class="w-full text-center py-6 px-4 text-[11px] text-slate-400 border-t border-slate-200 font-mono relative z-10 space-y-0.5">
-        <div>&copy; 2026 Medical Fitness Program. All Rights Reserved.</div>
-        <div class="text-slate-400">Evidence-Based Medicine & Progressive Exercise Science Optimization.</div>
+    <footer class="w-full text-center py-4 px-4 text-[9px] text-slate-400 border-t border-slate-200/60 font-mono relative z-10">
+        <div>&copy; 2026 Medical Fitness Program.</div>
     </footer>
 
     <script>
-        // 1. クイズデータ定義（全11問）
+        // クイズデータ定義（全11問）
         const questions = [
             {
                 id: 1,
@@ -198,22 +201,22 @@
                 type: "radio",
                 name: "bf",
                 options: [
-                    { value: "low", label: "引き締まっている（男性：〜14%, 女性：〜22%）" },
-                    { value: "mid", label: "標準的・やや気になる（男性：15〜22%, 女性：23〜30%）" },
-                    { value: "high", label: "優先して落としたい（男性：23%+, 女性：31%+）" }
+                    { value: "low", label: "引き締まっている（男:〜14%, 女:〜22%）" },
+                    { value: "mid", label: "標準的・やや気になる（男:15〜22%, 女:23〜30%）" },
+                    { value: "high", label: "優先して落としたい（男:23%+, 女:31%+）" }
                 ]
             },
             {
                 id: 4,
                 category: "Objective Activity (NEAT)",
-                title: "スマートフォンや時計に記録されている「1日の平均歩数」は？",
+                title: "スマホ等に記録されている「1日の平均歩数」は？",
                 type: "radio",
                 name: "steps",
                 options: [
-                    { value: "sedentary", label: "5,000歩未満（デスクワーク中心・座りっぱなしが多い）" },
-                    { value: "light", label: "5,000〜7,499歩（一般的な通勤や買い物レベル）" },
-                    { value: "active", label: "7,500〜9,999歩（日常的に意識して歩いている）" },
-                    { value: "highly_active", label: "10,000歩以上（非常に活動的・立ち仕事など）" }
+                    { value: "sedentary", label: "5,000歩未満（デスクワーク中心）" },
+                    { value: "light", label: "5,000〜7,499歩（一般的な通勤・買い物）" },
+                    { value: "active", label: "7,500〜9,999歩 font-medium（日常的に意識して歩く）" },
+                    { value: "highly_active", label: "10,000歩以上（立ち仕事・非常に活動的）" }
                 ]
             },
             {
@@ -225,7 +228,7 @@
                 options: [
                     { value: "cut", label: "脂肪を落として身体を引き締めたい（減量）" },
                     { value: "bulk", label: "筋肉を大きくして身体を大きくしたい（増量）" },
-                    { value: "recomp", label: "体重維持しつつ、脂肪を減らして筋肉をつけたい（ボディリコンポジション）" }
+                    { value: "recomp", label: "体重維持しつつ筋肉をつけ脂肪を減らしたい" }
                 ]
             },
             {
@@ -235,44 +238,44 @@
                 type: "radio",
                 name: "experience",
                 options: [
-                    { value: "beginner", label: "初心者（半年未満、または過去にやっていて強いブランクがある）" },
-                    { value: "intermediate", label: "中級者（半年〜2年、適切なフォームを理解し習慣化している）" },
-                    { value: "advanced", label: "上級者（2年以上、主要種目の重量更新を狙っている）" }
+                    { value: "beginner", label: "初心者（半年未満、または強いブランク）" },
+                    { value: "intermediate", label: "中級者（半年〜2年、フォームを理解し習慣化）" },
+                    { value: "advanced", label: "上級者（2年以上、主要重量の更新を狙う）" }
                 ]
             },
             {
                 id: 7,
                 category: "Metabolic Signals",
-                title: "ランチ（炭水化物）を食べた後、急激な眠気や集中力低下はありますか？",
+                title: "ランチを食べた後、急激な眠気や集中力低下はありますか？",
                 type: "radio",
                 name: "insulin",
                 options: [
-                    { value: "resistant", label: "ほぼ毎日、抗えないほどの強い眠気や気だるさに襲われる" },
-                    { value: "mild", label: "ときどき感じる、またはなんとなく頭がボーッとする" },
-                    { value: "sensitive", label: "ほとんど感じない（食後もエネルギーレベルが安定している）" }
+                    { value: "resistant", label: "ほぼ毎日、抗えないほどの強い眠気に襲われる" },
+                    { value: "mild", label: "ときどき感じる、またはなんとなくボーッとする" },
+                    { value: "sensitive", label: "ほとんど感じない（食後もエネルギーが安定）" }
                 ]
             },
             {
                 id: 8,
                 category: "Endocrine & Recovery",
-                title: "平均睡眠時間と、朝起きた時の疲労感（リカバリー状態）は？",
+                title: "平均睡眠時間と、朝起きた時の疲労感は？",
                 type: "radio",
                 name: "sleep",
                 options: [
-                    { value: "poor", label: "6時間未満、または寝ても慢性的に疲れが取れない" },
-                    { value: "fair", label: "6〜7時間、体調はそれなりに維持・回復できている" },
-                    { value: "excellent", label: "7時間以上、目覚めが良く朝からエネルギーに満ちている" }
+                    { value: "poor", label: "6時間未満、または慢性的に疲れが取れない" },
+                    { value: "fair", label: "6〜7時間、体調はそれなりに回復できている" },
+                    { value: "excellent", label: "7時間以上、目覚めが良く朝から快調" }
                 ]
             },
             {
                 id: 9,
                 category: "Medical Risks",
-                title: "健康診断で指摘された項目、または以下の既往歴はありますか？（複数選択可）",
+                title: "健康診断での指摘や、既往歴はありますか？（複数選択可）",
                 type: "checkbox",
                 name: "medical_history",
                 options: [
-                    { value: "bp", label: "血圧が高め（高血圧リスク・血管負荷リスク）" },
-                    { value: "lipids", label: "コレステロール・中性脂肪が高め（脂質異常症リスク）" },
+                    { value: "bp", label: "血圧が高め（高血圧・血管負荷リスク）" },
+                    { value: "lipids", label: "コレステロール・中性脂肪が高め（脂質異常リスク）" },
                     { value: "glucose", label: "血糖値が高め、またはHba1cの指摘（糖代謝リスク）" },
                     { value: "none", label: "特に目立った指摘・既往歴はない" }
                 ]
@@ -280,12 +283,12 @@
             {
                 id: 10,
                 category: "Logistics & Environment",
-                title: "主なトレーニング予定環境はどちらを想定していますか？",
+                title: "主なトレーニング予定環境はどちらですか？",
                 type: "radio",
                 name: "environment",
                 options: [
-                    { value: "gym", label: "ジム環境（バーベル、ダンベル、各種マシンが充実）" },
-                    { value: "home", label: "自宅環境（自重、または手持ちの可変式ダンベルのみ等）" }
+                    { value: "gym", label: "ジム環境（バーベル、マシンが充実）" },
+                    { value: "home", label: "自宅環境（自重、可変式ダンベルのみなど）" }
                 ]
             },
             {
@@ -296,8 +299,8 @@
                 name: "frequency",
                 options: [
                     { value: "low", label: "週 1〜2回（限られた時間で高効率を狙う）" },
-                    { value: "mid", label: "週 3回（標準的な分割法・全身法が組める）" },
-                    { value: "high", label: "週 4回以上（部位別に高度なボリューム管理を行う）" }
+                    { value: "mid", label: "週 3回（標準的な全身法・分割法）" },
+                    { value: "high", label: "週 4回以上（部位別に高度な管理を行う）" }
                 ]
             }
         ];
@@ -305,6 +308,14 @@
         let currentQuestionIndex = 0;
         const answers = {};
         let globalReportText = ""; 
+
+        // DOMの読み込み完了後に確実にイベントをバインド
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("start-quiz-btn").addEventListener("click", startQuiz);
+            document.getElementById("prev-btn").addEventListener("click", prevQuestion);
+            document.getElementById("next-btn").addEventListener("click", nextQuestion);
+            document.getElementById("submit-form-btn").addEventListener("click", submitToGoogleForm);
+        });
 
         function startQuiz() {
             document.getElementById("start-page").classList.add("hidden");
@@ -314,294 +325,3 @@
 
         function showQuestion() {
             const q = questions[currentQuestionIndex];
-            const box = document.getElementById("question-box");
-            
-            document.getElementById("question-category").innerText = q.category;
-            document.getElementById("question-counter").innerText = `${currentQuestionIndex + 1} / ${questions.length}`;
-            document.getElementById("progress").style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
-            
-            document.getElementById("prev-btn").disabled = currentQuestionIndex === 0;
-            const nextBtn = document.getElementById("next-btn");
-            
-            if (currentQuestionIndex === questions.length - 1) {
-                nextBtn.innerHTML = `<span>処方箋を生成する</span><span class="font-bold">✓</span>`;
-                nextBtn.classList.replace("bg-slate-800", "bg-blue-600");
-            } else {
-                nextBtn.innerHTML = `<span>次へ</span><span>→</span>`;
-                nextBtn.classList.replace("bg-blue-600", "bg-slate-800");
-            }
-
-            if (q.type === "radio" && !answers[q.name]) {
-                nextBtn.classList.add("opacity-40");
-            } else {
-                nextBtn.classList.remove("opacity-40");
-            }
-
-            let html = `<h3 class="text-base sm:text-lg md:text-xl font-bold text-slate-900 mb-5 leading-snug fade-in px-1">${q.title}</h3>`;
-
-            if (q.type === "metrics") {
-                html += `<div class="space-y-4 max-w-md mx-auto fade-in px-1">`;
-                q.fields.forEach(f => {
-                    const savedVal = answers[f.id] || "";
-                    html += `
-                        <div class="flex flex-col space-y-1">
-                            <label class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">${f.label}</label>
-                            <div class="relative flex items-center">
-                                <input type="${f.type}" id="${f.id}" value="${savedVal}" placeholder="${f.placeholder}" class="w-full bg-white border border-slate-200 rounded-xl px-4 py-3 text-slate-900 focus:outline-none focus:border-blue-500 transition font-mono text-base shadow-sm" />
-                                <span class="absolute right-4 text-xs font-bold text-slate-400">${f.unit}</span>
-                            </div>
-                        </div>`;
-                });
-                html += `</div>`;
-            } 
-            else if (q.type === "radio") {
-                html += `<div class="space-y-2.5 fade-in px-1">`;
-                q.options.forEach(opt => {
-                    const checked = answers[q.name] === opt.value ? "checked" : "";
-                    const activeClass = checked ? "border-blue-500 bg-blue-50/40 shadow-sm" : "border-slate-200 bg-white";
-                    html += `
-                        <label class="flex items-center space-x-3 border ${activeClass} rounded-xl p-4 cursor-pointer hover:border-slate-300 hover:bg-slate-50/50 transition group">
-                            <input type="radio" name="${q.name}" value="${opt.value}" ${checked} onchange="saveRadioValue('${q.name}', '${opt.value}', this)" class="w-4 h-4 text-blue-600 border-slate-300 focus:ring-blue-500 bg-white shrink-0 cursor-pointer" />
-                            <span class="text-xs sm:text-sm md:text-base font-medium text-slate-700 group-hover:text-slate-900 transition leading-relaxed">${opt.label}</span>
-                        </label>`;
-                });
-                html += `</div>`;
-            }
-            else if (q.type === "checkbox") {
-                html += `<div class="space-y-2.5 fade-in px-1">`;
-                q.options.forEach(opt => {
-                    const isChecked = (answers[q.name] && answers[q.name].includes(opt.value));
-                    const checked = isChecked ? "checked" : "";
-                    const activeClass = isChecked ? "border-blue-500 bg-blue-50/40" : "border-slate-200 bg-white";
-                    html += `
-                        <label class="flex items-center space-x-3 border ${activeClass} rounded-xl p-4 cursor-pointer hover:border-slate-300 hover:bg-slate-50/50 transition group">
-                            <input type="checkbox" name="${q.name}" value="${opt.value}" ${checked} onchange="saveCheckboxValue('${q.name}')" class="w-4 h-4 rounded text-blue-600 border-slate-300 focus:ring-blue-500 bg-white shrink-0 cursor-pointer" />
-                            <span class="text-xs sm:text-sm md:text-base font-medium text-slate-700 group-hover:text-slate-900 transition leading-relaxed">${opt.label}</span>
-                        </label>`;
-                });
-                html += `</div>`;
-            }
-
-            box.innerHTML = html;
-        }
-
-        function saveRadioValue(name, value, element) {
-            answers[name] = value;
-            const container = element.closest('.space-y-2\\.5');
-            const labels = container.querySelectorAll('label');
-            labels.forEach(label => {
-                label.classList.remove('border-blue-500', 'bg-blue-50/40', 'shadow-sm');
-                label.classList.add('border-slate-200', 'bg-white');
-            });
-            const activeLabel = element.closest('label');
-            activeLabel.classList.remove('border-slate-200', 'bg-white');
-            activeLabel.classList.add('border-blue-500', 'bg-blue-50/40', 'shadow-sm');
-            document.getElementById("next-btn").classList.remove("opacity-40");
-        }
-
-        function saveCheckboxValue(name) {
-            const checkedBoxes = document.querySelectorAll(`input[name="${name}"]:checked`);
-            answers[name] = Array.from(checkedBoxes).map(cb => cb.value);
-            const lastChecked = answers[name][answers[name].length - 1];
-            if (lastChecked === "none") {
-                answers[name] = ["none"];
-                showQuestion();
-            } else if (answers[name].includes("none") && answers[name].length > 1) {
-                answers[name] = answers[name].filter(v => v !== "none");
-                showQuestion();
-            }
-        }
-
-        function nextQuestion() {
-            const q = questions[currentQuestionIndex];
-
-            if (q.type === "metrics") {
-                let valid = true;
-                q.fields.forEach(f => {
-                    const val = document.getElementById(f.id).value;
-                    if (!val || val <= 0) valid = false;
-                    answers[f.id] = val;
-                });
-                if (!valid) { alert("有効な身体データをすべて入力してください。"); return; }
-            } 
-            else if (q.type === "radio") {
-                if (!answers[q.name]) { alert("選択肢を1つ選んでください。"); return; }
-            }
-            else if (q.type === "checkbox") {
-                if (!answers[q.name] || answers[q.name].length === 0) { alert("少なくとも1つ選択してください。"); return; }
-            }
-
-            if (currentQuestionIndex < questions.length - 1) {
-                currentQuestionIndex++;
-                showQuestion();
-            } else {
-                generateMedicalReport();
-            }
-        }
-
-        function prevQuestion() {
-            if (currentQuestionIndex > 0) {
-                currentQuestionIndex--;
-                showQuestion();
-            }
-        }
-
-        function generateMedicalReport() {
-            document.getElementById("quiz-container").classList.add("hidden");
-            document.getElementById("result-page").classList.remove("hidden");
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-
-            const weight = parseFloat(answers.weight);
-            const height = parseFloat(answers.height);
-            const age = parseInt(answers.age);
-            const gender = answers.gender === "male" ? "男性" : "女性";
-            
-            let bmr = 0;
-            if (answers.gender === "male") {
-                bmr = Math.round((10 * weight) + (6.25 * height) - (5 * age) + 5);
-            } else {
-                bmr = Math.round((10 * weight) + (6.25 * height) - (5 * age) - 161);
-            }
-            
-            let activityFactor = 1.2; 
-            let stepLabel = "";
-            if (answers.steps === "sedentary") { activityFactor = 1.15; stepLabel = "5,000歩未満（座りっぱなし）"; }
-            else if (answers.steps === "light") { activityFactor = 1.35; stepLabel = "5,000〜7,499歩（一般的通勤）"; }
-            else if (answers.steps === "active") { activityFactor = 1.55; stepLabel = "7,500〜9,999歩（意識的歩行）"; }
-            else if (answers.steps === "highly_active") { activityFactor = 1.75; stepLabel = "10,000歩以上（非常に活動的）"; }
-            
-            let tdee = Math.round(bmr * activityFactor);
-            let targetCalories = tdee;
-
-            let goalRouteTitle = "";
-            let calorieStrategyText = "";
-            if (answers.goal === "cut") {
-                targetCalories = Math.round(tdee * 0.8);
-                goalRouteTitle = "カッティング（減量・細胞引き締め）";
-                calorieStrategyText = "体内の余剰脂肪を効率よく代謝（酸化）させるため、臨床運動科学に基づき『20%のエネルギーマイナス幅』を厳密に設定。過度なアンダーカロリーは代謝の停滞を招くため、このラインの死守が必要です。";
-            } else if (answers.goal === "bulk") {
-                targetCalories = Math.round(tdee * 1.1);
-                goalRouteTitle = "リーンバルク（純粋筋肉増量）";
-                calorieStrategyText = "脂肪の過剰蓄積を最小限に抑えつつ、筋タンパク質合成（MPS）のシグナルを最大化するため、科学的に推奨される『10%の過剰エネルギー幅』を設定しました。";
-            } else {
-                targetCalories = Math.round(tdee);
-                goalRouteTitle = "ボディリコンポジション（脂肪燃焼・筋合成同時進行）";
-                calorieStrategyText = "総体重を大きく変動させず、体内エネルギーの最適配分により『筋肉増量と脂肪燃焼を並行』させる維持カロリー設定です。マクロ比率の厳密な順守が成果を左右します。";
-            }
-
-            let p = Math.round(weight * 2.2); 
-            let f = Math.round((targetCalories * 0.22) / 9); 
-            let c = Math.round((targetCalories - (p * 4) - (f * 9)) / 4);
-
-            let insulinStatus = "";
-            let insulinClinicalBreakdown = "";
-            if (answers.insulin === "resistant") {
-                insulinStatus = "低インスリン感受性（血糖スパイク傾向）";
-                insulinClinicalBreakdown = "食後の強い眠気は、炭水化物摂取時に過剰なインスリンが分泌されて血糖値が急降下する『機能性低血糖』が発生している医学的シグナルです。この状態は摂取した糖を優先的に脂肪細胞へ蓄えやすいため、玄米やオートミールなど高繊維な低GI食品を優先してください。";
-            } else if (answers.insulin === "mild") {
-                insulinStatus = "境界型インスリン感受性";
-                insulinClinicalBreakdown = "糖代謝の感受性にやや停滞が見られます。炭水化物を過剰にカットする必要はありませんが、食事の順番（野菜・タンパク質を先に摂る）を意識することでインスリンの過剰分泌を防げます。";
-            } else {
-                insulinStatus = "良好（優れた糖代謝能）";
-                insulinClinicalBreakdown = "細胞のインスリン感受性が非常に高く、摂取した炭水化物が効率よく筋肉のエネルギー（グリコーゲン）に変換されやすい理想的な状態です。炭水化物をトレーニングの主要燃料として正しく機能させます。";
-            }
-
-            let medicalHistory = answers.medical_history || [];
-            let medicalRiskRoute = "一般健康管理スキーム";
-            let medicalPrescriptionText = "現在、目立った臨床リスクは指摘されていません。基本の強度設定に沿って安全に運動プログラムを進めてください。";
-
-            if (medicalHistory.includes("bp")) {
-                medicalRiskRoute = "血管・血圧保護スクリーニング";
-                medicalPrescriptionText = "【高血圧リスクへの配慮】トレーニング中に強く息を止めるような動作（バルサルバ効果）は急激な血圧上昇を招くため禁忌です。ウエイト挙上時は「力を入れるときに息を吐く」ことを徹底し、最大重量よりも「適切なフォームで狙った回数をこなす（10〜12回）」強度設計を最優先してください。";
-            } else if (medicalHistory.includes("lipids")) {
-                medicalRiskRoute = "脂質・コレステロール改善スキーム";
-                medicalPrescriptionText = "【脂質異常症リスクへの配慮】算出されたマクロ比率のうち、飽和脂肪酸（脂っこい肉や加工脂）を避け、不飽和脂肪酸（青魚の魚油やオリーブオイル）へ置換することが血中脂質レベルの改善に極めて有効です。筋トレ後の軽い有酸素運動（15分）の併用が効果をブーストします。";
-            } else if (medicalHistory.includes("glucose")) {
-                medicalRiskRoute = "インスリンシグナルブースト処方";
-                medicalPrescriptionText = "【糖代謝リスクへの配慮】大きな筋肉（大腿四頭筋や大臀筋など）を動かすことで、インスリンの力を借りずに骨格筋へ糖を直接取り込ませる「GLUT4」という輸送体を活性化させます。食後30分〜1時間以内に軽度〜中強度の運動刺激を入れるスケジュールが臨床的に非常に推奨されます。";
-            }
-
-            let environmentText = answers.environment === "home" ? "自宅（省スペース/自重・ダンベル）" : "ジム（マシン・バーベル）";
-            let prescriptionMenu = [];
-
-            if (answers.environment === "home") {
-                prescriptionMenu = [
-                    { name: "ゴブレットスクワット", reason: "負荷を身体の前方で保持するため、通常のスクワットに比べ骨盤・体幹の垂直性が保たれやすく、安全かつ高効率に大腿部を刺激できます。" },
-                    { name: "ワンハンド・ダンベルロウ", reason: "ベンチや椅子を用いて三点支持で身体を強固に固定できるため、骨盤を安定させた状態で安全に広背筋・背部へ最大負荷をかけられます。" },
-                    { name: "ダンベル・フロアプレス", reason: "床に寝た状態で行う胸のプレス運動。床がストッパーとなることで、肩関節が過伸展して靭帯を痛めるリスクを物理的に排除できます。" },
-                    { name: "デッドバグ（コアコントロール）", reason: "骨盤と脊椎をニュートラルに固定したまま四肢を動かすことで、腹圧を高め、すべての運動のベースとなる体幹安定性を構築します。" }
-                ];
-            } else {
-                prescriptionMenu = [
-                    { name: "45度レッグプレス", reason: "背もたれに骨盤を完全固定できるため、軸圧による腰椎への過度な圧縮ストレスを完全に回避しつつ、大腿四頭筋に強い力学的刺激を与えられます。" },
-                    { name: "ラットプルダウンマシン", reason: "フリーウエイト（懸垂など）に比べて負荷の微調整が容易なため、肩関節の稼働域に応じた安全な背部の構築が可能です。" },
-                    { name: "チェストプレスマシン", reason: "プレスの軌道がマシンの構造上固定されているため、肩のインピンジメント（衝突トラブル）を回避し、安全に大胸筋を追い込めます。" },
-                    { name: "ケーブル・アンチローテーション", reason: "体幹を無理に捻るのではなく、外部からの回転負荷に「耐えて体幹を静止させる」ことで、脊椎に安全な形で腹部を強化します。" }
-                ];
-            }
-
-            let neatPrescription = "";
-            if (answers.steps === "sedentary" || answers.steps === "light") {
-                neatPrescription = `【重要：毎食後15分のウォーキング】現在の歩数ベースでは非運動性活動熱産生（NEAT）が低下しています。「毎昼食後および夕食後に、15分間歩く」ことをルーティン化してください。食後の軽い活動は、インスリンの感受性を高め、糖質を脂肪ではなく『筋肉の修復エネルギー』へと優先配分させる強力なスイッチになります。`;
-            } else {
-                neatPrescription = `【優秀な代謝維持：食後10分のアクティベーション】日常の活動量は素晴らしい基準です。現在の歩数を維持したまま、毎食後に10分間だけ歩くか、またはマイルドなストレッチを行うことで、インスリン感受性をさらに高いレベルで維持できます。`;
-            }
-
-            // ================= 面談資料（提出用データ）の生成 =================
-            globalReportText = `
-【1. クイズ回答履歴（基本属性）】
-・年齢: ${age}歳
-・身長: ${height}cm
-・体重: ${weight}kg
-・性別: ${gender}
-・1日の平均歩数: ${stepLabel}
-・トレーニング想定環境: ${environmentText}
-・週の可能投資回数: ${answers.frequency === 'low' ? '週1〜2回' : answers.frequency === 'mid' ? '週3回' : '週4回以上'}
-
-【2. 臨床スクリーニング結果】
-・総合診断ルート: ${goalRouteTitle}
-・医療既往リスク評価: ${medicalRiskRoute}
-・インスリン感受性ステータス: ${insulinStatus}
-
-【3. 処方マクロ栄養設定】
-・総目標エネルギー: ${targetCalories} kcal
-・P（タンパク質）: ${p} g
-・F（脂質）: ${f} g
-・C（炭水化物）: ${c} g
-
-【4. 処方された最適運動メニュー】
-${prescriptionMenu.map((m, i) => `${i+1}. ${m.name}`).join('\n')}
-            `.trim();
-
-            const resultContent = document.getElementById("result-content");
-            resultContent.innerHTML = `
-                <div class="medical-card p-5 md:p-8 rounded-2xl border-l-4 border-blue-600 space-y-4 shadow-md mx-1">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                        <h4 class="text-xs font-bold tracking-widest text-blue-700 uppercase font-mono">01 / エネルギー＆マクロ栄養処方箋</h4>
-                        <span class="px-2.5 py-0.5 bg-blue-50 text-blue-700 rounded-md font-bold text-[11px] uppercase border border-blue-100">${goalRouteTitle}</span>
-                    </div>
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-1">
-                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-                            <div class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">推定目標エネルギー</div>
-                            <div class="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono mt-0.5">${targetCalories} <span class="text-xs font-medium text-slate-500">kcal</span></div>
-                        </div>
-                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-                            <div class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">タンパク質 (P)</div>
-                            <div class="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono mt-0.5">${p} <span class="text-xs font-medium text-slate-500">g</span></div>
-                        </div>
-                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-                            <div class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">脂質 (F)</div>
-                            <div class="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono mt-0.5">${f} <span class="text-xs font-medium text-slate-500">g</span></div>
-                        </div>
-                        <div class="bg-slate-50 p-3.5 rounded-xl border border-slate-100">
-                            <div class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">炭水化物 (C)</div>
-                            <div class="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono mt-0.5">${c} <span class="text-xs font-medium text-slate-500">g</span></div>
-                        </div>
-                    </div>
-                    <p class="text-xs text-slate-500 leading-relaxed">${calorieStrategyText}</p>
-                </div>
-
-                <div class="medical-card p-5 md:p-8 rounded-2xl border-l-4 border-red-500 space-y-3 shadow-md mx-1">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                        <h4 class="text-xs font-bold tracking-widest text-red-700 uppercase font-mono">02 / 包括的臨床既往リスク管理</h4>
-                        <span class="px-2.5 py-0.5 bg-red-50 text-red-700 rounded-md font-bold text-xs">${medicalRiskRoute}
